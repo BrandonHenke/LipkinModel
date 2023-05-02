@@ -1,0 +1,105 @@
+\documentclass[
+a4paper,
+10pt,
+twoside,
+% prd,
+% aps,
+% nofootinbib,
+% superscriptaddress,
+% floatfix,
+% preprintnumbers,
+]{article}
+
+% MUST BE RUN WITH LUALATEXMK
+
+\usepackage{preamble}
+\usepackage{titleinfo}
+
+\geometry{ % Set document margins
+	top			= 2cm,
+	bottom		= 2cm,
+	left		= 1cm,
+	right		= 1cm
+}
+
+\newcommand{\mcols}{2} % Choose number of columns (>= 1)
+
+
+\bibSetup{refs.bib} % Give references file 
+% ===== Format headers & footers =====
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{B. Henke}
+\fancyhead[LO]{\headertitle\hspace{0.5cm}\textit{PHY981}}
+\fancyhead[RE]{\textit{PHY981}\hspace{0.5cm}\headertitle}
+\fancyfoot[RE,LO]{\thepage}
+
+\begin{document}
+% \tableofcontents
+\titleinf{Lipkin Model}
+\maketitle
+\startmcols
+
+\section{Introduction}\label{sec: I}
+
+Consider a two level system with the lower energy state ($\sigma = -1$) having an energy of $-\epsilon/2$ and the upper energy state ($\sigma=1$) having an energy of $\epsilon/2$.
+Now, consider a another system with $\Omega \in \Z^+$ copies of this two level system.
+
+This gives a system with two quantum numbers, $\sigma \in \{-1,1\}$, and $m \in \{1,2,\dots,\Omega\}$.
+In Fock space, the Hamiltonian for this system is
+\begin{align}
+	\hat{H} &= \frac{1}{2} \epsilon \sum_{m\sigma}\sigma a_{m\sigma}^\dagger a_{m\sigma}- \frac{1}{2}V\sum_{mm'\sigma}a_{m\sigma}^\dagger a_{m'\sigma}^\dagger a_{m'-\sigma}a_{m-\sigma}.
+	\label{eq: lipkin_ham_a}
+\end{align}
+The $V$ term here is the two particle interaction term between adjacent particles.
+
+\subsection{Quasi-spin Operators} \label{ssec: IA}
+
+One can consider the operators
+\begin{align}
+	\hat{K}_3 &= \frac{1}{2} \sum_{m=1}^\Omega (a_{m+}^\dagger a_{m+}-a_{m-}^\dagger a_{m-}),\\
+	\hat{K}_+ &= \sum_{m=1}^\Omega a_{m+}^\dagger a_{m-},\\
+	\hat{K}_- &= (\hat{K}_+)^\dagger,\\
+		&= \sum_{m=1}^\Omega a_{m-}^\dagger a_{m+}.
+\end{align}
+
+Using these "quasi-spin" operators, one can write \ref{eq: lipkin_ham_a} as
+\begin{align}
+	\hat{H} &= \epsilon \hat{K}_3 - \frac{1}{2}V (\hat{K}_+^2-\hat{K}_-^2).
+	\label{eq: lipkin_ham_k}
+\end{align}
+
+
+\subsubsection{Commutation Relations} \label{sssec: IA1}
+
+\begin{align}
+	[\hat{K}_+,\hat{K}_-]
+		&= \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{m+}^\dagger a_{m-} a_{n-}^\dagger a_{n+} - a_{n-}^\dagger a_{n+} a_{m+}^\dagger a_{m-},\\
+		&= \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{m+}^\dagger (\delta_{m-n-} - a_{n-}^\dagger a_{m-}) a_{n+}\nonumber\\
+		&- \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{n-}^\dagger (\delta_{m+n+} - a_{m+}^\dagger a_{n+}) a_{m-},\\
+		&= \sum_{m=1}^\Omega a_{m+}^\dagger a_{m+} - a_{m-}^\dagger a_{m-}\nonumber\\
+		&+ \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{n-}^\dagger a_{m+}^\dagger a_{n+} a_{m-} - a_{m+}^\dagger a_{n-}^\dagger a_{m-} a_{n+},\\
+		&= 2\hat{K}_3 + 0,\\
+		&= 2\hat{K}_3.
+\end{align}
+
+\begin{align}
+	[\hat{K}_3,\hat{K}_\pm]
+		&= \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{m+}^\dagger a_{m+}-a_{m-}^\dagger a_{m-}) a_{n\pm}^\dagger a_{n\mp} \nonumber\\
+		&- \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{n\pm}^\dagger a_{n\mp} (a_{m+}^\dagger a_{m+}-a_{m-}^\dagger a_{m-}),\\
+		&= \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{m+}^\dagger a_{m+} a_{n\pm}^\dagger a_{n\mp} - a_{m-}^\dagger a_{m-} a_{n\pm}^\dagger a_{n\mp}) \nonumber\\
+		&- \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{n\pm}^\dagger a_{n\mp} a_{m+}^\dagger a_{m+} - a_{n\pm}^\dagger a_{n\mp} a_{m-}^\dagger a_{m-})\\
+		&= \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{m+}^\dagger \delta_{m+n\pm} a_{n\mp} - a_{m-}^\dagger \delta_{m-n\pm} a_{n\mp} \nonumber\\
+		&\qquad - a_{m+}^\dagger a_{n\pm}^\dagger a_{m+} a_{n\mp} + a_{m-}^\dagger a_{n\pm}^\dagger a_{m-} a_{n\mp}) \nonumber\\
+		&- \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{n\pm}^\dagger \delta_{n\mp m+} a_{m+} - a_{n\pm}^\dagger \delta_{n\mp m-}a_{m-} \nonumber\\
+		&\qquad - a_{n\pm}^\dagger a_{m+}^\dagger a_{n\mp} a_{m+} + a_{n\pm}^\dagger a_{m-}^\dagger a_{n\mp} a_{m-}),\\
+		&= \sum_{m=1}^\Omega (a_{m+}^\dagger a_{m-} - a_{m-}^\dagger a_{m+}) \nonumber\\
+		&+ \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{m-}^\dagger a_{n\pm}^\dagger a_{m-} a_{n\mp} - a_{m+}^\dagger a_{n\pm}^\dagger a_{m+} a_{n\mp}) \nonumber\\
+		&+ \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{n\pm}^\dagger a_{m+}^\dagger a_{n\mp} a_{m+} - a_{n\pm}^\dagger a_{m-}^\dagger a_{n\mp} a_{m-}),
+\end{align}
+
+% \printbib
+\stopmcols
+
+\end{document}
