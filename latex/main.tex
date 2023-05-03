@@ -54,7 +54,7 @@ In Fock space, the Hamiltonian for this system is
 \end{align}
 The $V$ term here is the two particle interaction term between adjacent particles.
 
-\subsection{Quasi-spin Operators} \label{ssec: IA}
+\section{Quasi-spin Operators} \label{sec: II}
 
 One can consider the operators
 \begin{align}
@@ -66,37 +66,109 @@ One can consider the operators
 
 Using these "quasi-spin" operators, one can write \ref{eq: lipkin_ham_a} as
 \begin{align}
-	\hat{H} &= \epsilon \hat{K}_3 - \frac{1}{2}V (\hat{K}_+^2-\hat{K}_-^2).
+	\hat{H} &= \epsilon \hat{K}_3 - \frac{1}{2}V (\hat{K}_+^2+\hat{K}_-^2).
 	\label{eq: lipkin_ham_k}
 \end{align}
 
+Furthermore, there are two additional "quasi-spin" operators given by the equations:
+\begin{align}
+	\hat{K}_1 &= \frac{1}{2}(\hat{K}_+ + \hat{K}_-),\\
+	\hat{K}_2 &= \frac{1}{2i}(\hat{K}_+ - \hat{K}_-).
+\end{align}
+These create a "quasi-spin" space, similar to the angular momentum space with three components representing the three spatial dimensions.
+One can show that these operators are $SU(2)$ generators, just like the angular momentum operators, by showing that the following commutation relations hold (see the appendix for the algebra):
+\begin{align}
+	[\hat{K}_+,\hat{K}_-] &= 2\hat{K}_3,\\
+	[\hat{K}_3,\hat{K}_\pm] &= \pm\hat{K}_\pm.
+\end{align}
 
-\subsubsection{Commutation Relations} \label{sssec: IA1}
+\subsection{Signature Operator}\label{ssec: IB}
+
+
+Consider the quasi-spin vector, $\bm{K}$, where
+\begin{align}
+	\bm{K}\cdot k_i &= \ev*{\hat{K}_i},
+\end{align}
+where $k_i$ are basis vectors in the quasi-spin space.
+One can consider a rotation in this space by $\pi$ in some plane of this space.
+Let the signature operator be given by
+\begin{align}
+	\hat{R} &= e^{i\pi\hat{K}_3}.
+\end{align}
+This operator has the effect of rotating by $\pi$ in the $k_{12}$ plane.
+
+The signature operator commutes with the Hamiltonian($[\hat{R},\hat{H}]=0$), so an energy eigenstate is also an eigenstate of the signature operator, with eigenvalue $r \in \{-1,1,-i,i\}$.
+If there are an even number of particles, $r\in\{-1,1\}$.
+if there are an odd number of particles, $r\in\{-i,i\}$.
+
+
+\section{Example}\label{sec: III}
+
+Consider a system with 12 particles ($N=12$), $\epsilon = 1$, $\Omega = 12$.
+If one imagines "turning on" the interaction term by increasing $V$ from zero, then the energy eigenvalues of the Hamiltonian will begin to diverge, as shown in figure \ref{fig: eigenvalues}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/eigenvaluePlot.png}
+	\caption{
+		Each line in this figure corresponds to an eigenvalue of the Hamiltonian, as the interaction term is "switched on".
+		Each line is labeled with the signature eigenvalue, $r$.
+		As the interaction term is increased, the eigenvalues begin to diverge.
+		The eigenvalues start ($V=0$) evenly spaced by a value of one, but separate as $V$ increases.
+	}
+	\label{fig: eigenvalues}
+\end{figure}
+
+At a value of $V(\Omega-1)/\epsilon = 1$, the two smallest and two largest eigenvalues start becoming noticably closer together, and the difference between them continues to decrease as this $V$ increases, seemingly becoming arbitraily close.
+
+\section{Transition Operator}\label{sec: IIII}
+
+
+The $\hat{K}_1$ operator is sometimes called the "transition" operator.
+The reason for this is unknown to me.
+
+For the ground state of the Hamiltonian, regardless of the number of particles, value of $\epsilon$, or value of $\Omega$, the expectation value of this operator is zero.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/transitionMatrixElement.png}
+	\caption{
+		Here, the matrix element for the transition operator of the ground and first excited states is shown as a function of the $V(\Omega-1)/\epsilon$.
+	}
+	\label{fig: trans_mat_elem}
+\end{figure}
+
+
+\section{Appendix}\label{app: I}
+
+\subsection{Commutation Relations} \label{sapp: IA}
+
 
 \begin{align}
 	[\hat{K}_+,\hat{K}_-]
-		&= \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{m+}^\dagger a_{m-} a_{n-}^\dagger a_{n+} - a_{n-}^\dagger a_{n+} a_{m+}^\dagger a_{m-},\\
-		&= \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{m+}^\dagger (\delta_{m-n-} - a_{n-}^\dagger a_{m-}) a_{n+}\nonumber\\
-		&- \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{n-}^\dagger (\delta_{m+n+} - a_{m+}^\dagger a_{n+}) a_{m-},\\
+		&= \sum_{m,n=1}^\Omega a_{m+}^\dagger a_{m-} a_{n-}^\dagger a_{n+} - a_{n-}^\dagger a_{n+} a_{m+}^\dagger a_{m-},\\
+		&= \sum_{m,n=1}^\Omega a_{m+}^\dagger (\delta_{m-n-} - a_{n-}^\dagger a_{m-}) a_{n+}\nonumber\\
+		&- \sum_{m,n=1}^\Omega a_{n-}^\dagger (\delta_{m+n+} - a_{m+}^\dagger a_{n+}) a_{m-},\\
 		&= \sum_{m=1}^\Omega a_{m+}^\dagger a_{m+} - a_{m-}^\dagger a_{m-}\nonumber\\
-		&+ \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{n-}^\dagger a_{m+}^\dagger a_{n+} a_{m-} - a_{m+}^\dagger a_{n-}^\dagger a_{m-} a_{n+},\\
+		&+ \sum_{m,n=1}^\Omega a_{n-}^\dagger a_{m+}^\dagger a_{n+} a_{m-} - a_{m+}^\dagger a_{n-}^\dagger a_{m-} a_{n+},\\
 		&= 2\hat{K}_3 + 0,\\
 		&= 2\hat{K}_3.
 \end{align}
 
 \begin{align}
 	[\hat{K}_3,\hat{K}_\pm]
-		&= \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{m+}^\dagger a_{m+}-a_{m-}^\dagger a_{m-}) a_{n\pm}^\dagger a_{n\mp} \nonumber\\
-		&- \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega a_{n\pm}^\dagger a_{n\mp} (a_{m+}^\dagger a_{m+}-a_{m-}^\dagger a_{m-}),\\
-		&= \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{m+}^\dagger a_{m+} a_{n\pm}^\dagger a_{n\mp} - a_{m-}^\dagger a_{m-} a_{n\pm}^\dagger a_{n\mp}) \nonumber\\
-		&- \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{n\pm}^\dagger a_{n\mp} a_{m+}^\dagger a_{m+} - a_{n\pm}^\dagger a_{n\mp} a_{m-}^\dagger a_{m-})\\
-		&= \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{m+}^\dagger \delta_{m+n\pm} a_{n\mp} - a_{m-}^\dagger \delta_{m-n\pm} a_{n\mp} \nonumber\\
+		&= \frac{1}{2} \sum_{m,n=1}^\Omega (a_{m+}^\dagger a_{m+}-a_{m-}^\dagger a_{m-}) a_{n\pm}^\dagger a_{n\mp} \nonumber\\
+		&- \frac{1}{2} \sum_{m,n=1}^\Omega a_{n\pm}^\dagger a_{n\mp} (a_{m+}^\dagger a_{m+}-a_{m-}^\dagger a_{m-}),\\
+		&= \frac{1}{2} \sum_{m,n=1}^\Omega (a_{m+}^\dagger a_{m+} a_{n\pm}^\dagger a_{n\mp} - a_{m-}^\dagger a_{m-} a_{n\pm}^\dagger a_{n\mp}) \nonumber\\
+		&- \frac{1}{2} \sum_{m,n=1}^\Omega (a_{n\pm}^\dagger a_{n\mp} a_{m+}^\dagger a_{m+} - a_{n\pm}^\dagger a_{n\mp} a_{m-}^\dagger a_{m-})\\
+		&= \frac{1}{2} \sum_{m,n=1}^\Omega (a_{m+}^\dagger \delta_{m+n\pm} a_{n\mp} - a_{m-}^\dagger \delta_{m-n\pm} a_{n\mp} \nonumber\\
 		&\qquad - a_{m+}^\dagger a_{n\pm}^\dagger a_{m+} a_{n\mp} + a_{m-}^\dagger a_{n\pm}^\dagger a_{m-} a_{n\mp}) \nonumber\\
-		&- \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{n\pm}^\dagger \delta_{n\mp m+} a_{m+} - a_{n\pm}^\dagger \delta_{n\mp m-}a_{m-} \nonumber\\
+		&- \frac{1}{2} \sum_{m,n=1}^\Omega (a_{n\pm}^\dagger \delta_{n\mp m+} a_{m+} - a_{n\pm}^\dagger \delta_{n\mp m-}a_{m-} \nonumber\\
 		&\qquad - a_{n\pm}^\dagger a_{m+}^\dagger a_{n\mp} a_{m+} + a_{n\pm}^\dagger a_{m-}^\dagger a_{n\mp} a_{m-}),\\
-		&= \sum_{m=1}^\Omega (a_{m+}^\dagger a_{m-} - a_{m-}^\dagger a_{m+}) \nonumber\\
-		&+ \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{m-}^\dagger a_{n\pm}^\dagger a_{m-} a_{n\mp} - a_{m+}^\dagger a_{n\pm}^\dagger a_{m+} a_{n\mp}) \nonumber\\
-		&+ \frac{1}{2} \sum_{m=1}^\Omega\sum_{n=1}^\Omega (a_{n\pm}^\dagger a_{m+}^\dagger a_{n\mp} a_{m+} - a_{n\pm}^\dagger a_{m-}^\dagger a_{n\mp} a_{m-}),
+		&= \pm \sum_{m=1}^\Omega a_{m\pm}^\dagger a_{\mp} \nonumber\\
+		&+ \frac{1}{2} \sum_{m,n=1}^\Omega (a_{m-}^\dagger a_{n\pm}^\dagger a_{m-} a_{n\mp} - a_{m+}^\dagger a_{n\pm}^\dagger a_{m+} a_{n\mp}) \nonumber\\
+		&+ \frac{1}{2} \sum_{m,n=1}^\Omega (a_{n\pm}^\dagger a_{m+}^\dagger a_{n\mp} a_{m+} - a_{n\pm}^\dagger a_{m-}^\dagger a_{n\mp} a_{m-}),\\
+		&= \pm \hat{K}_\pm.
 \end{align}
 
 % \printbib

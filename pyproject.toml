@@ -6,8 +6,10 @@ authors = ["Brandon Henke <brandon.henke3@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10,<3.12"
 jupyter = "^1.0.0"
+matplotlib = "^3.7.1"
+scipy = "^1.10.1"
 
 
 [build-system]
