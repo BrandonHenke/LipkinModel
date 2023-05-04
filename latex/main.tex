@@ -41,7 +41,9 @@ twoside,
 \maketitle
 \startmcols
 
-\section{Introduction}\label{sec: I}
+
+\section{Introduction}\label{sec: intro}
+
 
 Consider a two level system with the lower energy state ($\sigma = -1$) having an energy of $-\epsilon/2$ and the upper energy state ($\sigma=1$) having an energy of $\epsilon/2$.
 Now, consider a another system with $\Omega \in \Z^+$ copies of this two level system.
@@ -54,7 +56,7 @@ In Fock space, the Hamiltonian for this system is
 \end{align}
 The $V$ term here is the two particle interaction term between adjacent particles.
 
-\section{Quasi-spin Operators} \label{sec: II}
+\section{Quasi-spin Operators} \label{sec: qs operators}
 
 One can consider the operators
 \begin{align}
@@ -82,12 +84,12 @@ One can show that these operators are $SU(2)$ generators, just like the angular 
 	[\hat{K}_3,\hat{K}_\pm] &= \pm\hat{K}_\pm.
 \end{align}
 
-\subsection{Signature Operator}\label{ssec: IB}
+\subsection{Signature Operator}\label{ssec: qs-sig}
 
 
 Consider the quasi-spin vector, $\bm{K}$, where
 \begin{align}
-	\bm{K}\cdot k_i &= \ev*{\hat{K}_i},
+	\bm{K}\cdot k_i &= \hat{K}_i,
 \end{align}
 where $k_i$ are basis vectors in the quasi-spin space.
 One can consider a rotation in this space by $\pi$ in some plane of this space.
@@ -97,37 +99,44 @@ Let the signature operator be given by
 \end{align}
 This operator has the effect of rotating by $\pi$ in the $k_{12}$ plane.
 
-The signature operator commutes with the Hamiltonian($[\hat{R},\hat{H}]=0$), so an energy eigenstate is also an eigenstate of the signature operator, with eigenvalue $r \in \{-1,1,-i,i\}$.
+The signature operator commutes with the Hamiltonian ($[\hat{R},\hat{H}] = 0$), so an energy eigenstate is also an eigenstate of the signature operator, with eigenvalue $r \in \{-1,1,-i,i\}$.
 If there are an even number of particles, $r\in\{-1,1\}$.
 if there are an odd number of particles, $r\in\{-i,i\}$.
 
 
-\section{Example}\label{sec: III}
+\section{Example}\label{sec: example}
 
 Consider a system with 12 particles ($N=12$), $\epsilon = 1$, $\Omega = 12$.
 If one imagines "turning on" the interaction term by increasing $V$ from zero, then the energy eigenvalues of the Hamiltonian will begin to diverge, as shown in figure \ref{fig: eigenvalues}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{figures/eigenvaluePlot.png}
+	\includegraphics[width=0.8\linewidth]{figures/eigenvaluePlotK6.png}
+	\includegraphics[width=0.8\linewidth]{figures/eigenvaluePlotAllK.png}
 	\caption{
 		Each line in this figure corresponds to an eigenvalue of the Hamiltonian, as the interaction term is "switched on".
 		Each line is labeled with the signature eigenvalue, $r$.
 		As the interaction term is increased, the eigenvalues begin to diverge.
 		The eigenvalues start ($V=0$) evenly spaced by a value of one, but separate as $V$ increases.
+		In the second figure, all values of $K$ are plotted in different colors, and dotted lines are $r=-1$.
 	}
 	\label{fig: eigenvalues}
 \end{figure}
 
 At a value of $V(\Omega-1)/\epsilon = 1$, the two smallest and two largest eigenvalues start becoming noticably closer together, and the difference between them continues to decrease as this $V$ increases, seemingly becoming arbitraily close.
 
-\section{Transition Operator}\label{sec: IIII}
+
+\section{Transition Operator}\label{sec: transition}
 
 
 The $\hat{K}_1$ operator is sometimes called the "transition" operator.
 The reason for this is unknown to me.
 
 For the ground state of the Hamiltonian, regardless of the number of particles, value of $\epsilon$, or value of $\Omega$, the expectation value of this operator is zero.
+The argument for this comes from the angular momentum argument.
+The ground state is when all particles have $\sigma = -1$, and this is an eigenstate of the $\hat{K}_3$.
+Essentially, this state is anti-aligned with the $k_3$ axis, so measuring a positive value along the $k_1$ is just as likely as measuring a negative value.
+Hence, the expectation value (with the ground state) for this operator is zero, always.
 
 \begin{figure}[H]
 	\centering
@@ -139,9 +148,88 @@ For the ground state of the Hamiltonian, regardless of the number of particles, 
 \end{figure}
 
 
-\section{Appendix}\label{app: I}
+\section{Comparison With the Occupation Basis}
 
-\subsection{Commutation Relations} \label{sapp: IA}
+In the occupation basis, one considers each possible state that the system can be in by considering how many ways one can place $N$ particles in $2\Omega$ states, accounting for the restricting one particle per state.
+
+In the case of $N=\Omega=2$, there are six allowed states:
+\begin{align*}
+	\ket{1010}, \\
+	\ket{1001}, \\
+	\ket{0110}, \\
+	\ket{0101}, \\
+	\ket{1100}, \\
+	\ket{0011}. 
+\end{align*}
+In the case of $N=4$ and $\Omega = 2$, there is only one allowed state:
+\begin{align*}
+	\ket{1111}.
+\end{align*}
+
+Consider the $N=4$ case, first.
+In this system, all possible states are occupied, and there is no ability to move particles around.
+Hence, the Hamiltonian in this basis is just the scalar $0$ (eigenvalue of zero (obviously)).
+
+In the system where $N=2$, however, things are a little more interesting.
+Being that there are more states, one can move between them by use of the $\hat{K}_\pm$ operators.
+In this basis, the $\hat{K}$ matrices are given by
+\begin{align*}
+	\hat{K}_3 &= 
+	\begin{pmatrix}
+		-1 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 1 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+	\end{pmatrix}, \\
+	\hat{K}_+ &= 
+	\begin{pmatrix}
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+		 1 & 0 & 0 & 0 & 0 & 0 \\
+		 1 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 1 & 1 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+	\end{pmatrix}, \\
+	\hat{K}_- &= 
+	\begin{pmatrix}
+		 0 & 1 & 1 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 1 & 0 & 0 \\
+		 0 & 0 & 0 & 1 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+		 0 & 0 & 0 & 0 & 0 & 0 \\
+	\end{pmatrix} .
+\end{align*}
+One now can use these to calculate the Hamiltonian and to find the energy eigenvalues of this Hamiltonian.
+Doing this, the eigenvalues (found numerically) are
+\begin{align}
+	\lambda \in \{\sim -1.005,0,0,0,0,\sim 1.005\}.
+\end{align}
+
+Compare that with the method described in the rest of this paper.
+There are three states with total $K = 1$, and one state with total $K = 0$.
+The eigenvalues for the $K=1$ states are
+\begin{align}
+	\lambda \in \{\sim -1.005,0,\sim 1.005\},
+\end{align}
+and the eigenvalue for the $K=1$ state is $\lambda = 0$.
+
+Notably, the occupation basis has two additional states that do not appear in the quasi-spin basis.
+Those two states are $\ket{1100}$ and $\ket{0011}$: the states with two particles with the same value for $m$.
+In these states, the total energy is zero, because there are the same number of particles with $\epsilon/2$ energy as there are with $-\epsilon/2$ energy, and there is no ability to move particles from $\sigma$ to $\sigma' \neq \sigma$.
+One can argue that states in the $k$ basis which have an energy of zero are accounting for all states with such energy, i.e., ($\ket{KK_0}$)
+\begin{align}
+	\ket{10} &= \frac{1}{\sqrt{2}} (\ket{1001}+\ket{1100}),\\
+	\ket{00} &= \frac{1}{\sqrt{2}} (\ket{0110}+\ket{0011}),
+\end{align}
+or something along these lines.
+
+
+\section{Appendix}\label{sec: appendix}
+
+\subsection{Commutation Relations} \label{ssec: appendix commutation}
 
 
 \begin{align}
