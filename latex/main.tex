@@ -107,20 +107,27 @@ if there are an odd number of particles, $r\in\{-i,i\}$.
 \section{Example}\label{sec: example}
 
 Consider a system with 12 particles ($N=12$), $\epsilon = 1$, $\Omega = 12$.
-If one imagines "turning on" the interaction term by increasing $V$ from zero, then the energy eigenvalues of the Hamiltonian will begin to diverge, as shown in figure \ref{fig: eigenvalues}.
+If one imagines "turning on" the interaction term by increasing $V$ from zero, then the energy eigenvalues of the Hamiltonian will begin to diverge, as shown in figure \ref{fig: eigenvalues K6}.
+The look of this graph is somewhat reminiscent of the symmetry breaking phase transition for shapes of nuclei.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/eigenvaluePlotK6.png}
-	\includegraphics[width=0.8\linewidth]{figures/eigenvaluePlotAllK.png}
 	\caption{
 		Each line in this figure corresponds to an eigenvalue of the Hamiltonian, as the interaction term is "switched on".
 		Each line is labeled with the signature eigenvalue, $r$.
 		As the interaction term is increased, the eigenvalues begin to diverge.
 		The eigenvalues start ($V=0$) evenly spaced by a value of one, but separate as $V$ increases.
-		In the second figure, all values of $K$ are plotted in different colors, and dotted lines are $r=-1$.
 	}
-	\label{fig: eigenvalues}
+	\label{fig: eigenvalues K6}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figures/eigenvaluePlotAllK.png}
+	\caption{
+		In this figure, all values of $K$ are plotted in different colors, and dotted lines are $r=-1$.
+	}
+	\label{fig: eigenvalues all K}
 \end{figure}
 
 At a value of $V(\Omega-1)/\epsilon = 1$, the two smallest and two largest eigenvalues start becoming noticably closer together, and the difference between them continues to decrease as this $V$ increases, seemingly becoming arbitraily close.
@@ -215,6 +222,8 @@ The eigenvalues for the $K=1$ states are
 	\lambda \in \{\sim -1.005,0,\sim 1.005\},
 \end{align}
 and the eigenvalue for the $K=1$ state is $\lambda = 0$.
+The states with eigenvalues of $\pm 1.005$ have quantum numbers $K = 1$ and $K_0 = \pm 1$, respectively.
+The signature quantum number for both of these states is $r = 1$.
 
 Notably, the occupation basis has two additional states that do not appear in the quasi-spin basis.
 Those two states are $\ket{1100}$ and $\ket{0011}$: the states with two particles with the same value for $m$.

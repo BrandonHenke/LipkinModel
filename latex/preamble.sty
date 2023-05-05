@@ -4,14 +4,15 @@
 
 \newcommand{\startmcols}{%
 \ifnum\mcols>1
-\begin{multicols*}{\mcols}
+\begin{multicols}{\mcols}
 \fi
 }
 \newcommand{\stopmcols}{%
 \ifnum\mcols>1
-\end{multicols*}
+\end{multicols}
 \fi
 }
+\setlength{\columnsep}{1cm}
 
 
 %FONTS
